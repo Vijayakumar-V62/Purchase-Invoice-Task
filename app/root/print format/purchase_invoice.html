@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .header {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .item-table, .item-table th, .item-table td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .item-table th, .item-table td {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Purchase Invoice</h2>
+        <p>Supplier: {{ doc.supplier_name }}</p>
+        <p>Invoice Date: {{ doc.posting_date }}</p>
+        <p>Billing Address: {{ doc.billing_address }}</p>
+    </div>
+    <table class="item-table" width="100%">
+        <thead>
+            <tr>
+                <th>Item Code</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in doc.invoice_items %}
+            <tr>
+                <td>{{ item.item_code }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.rate }}</td>
+                <td>{{ item.total_amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="footer">
+        <h3>Total Amount: {{ doc.total_amount }}</h3>
+    </div>
+</body>
+</html>
+
+
